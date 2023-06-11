@@ -24,7 +24,7 @@ def append_request():
         data = request.json.get("data")
         append_request = computeandstorage_pb2.AppendRequest(data=data)
         client.AppendData(append_request)
-        return
+        return 200
 
 
 @app.route('/deletefile', methods=['POST'])
@@ -35,7 +35,7 @@ def delete_request():
         s3uri = request.json.get("s3uri")
         delete_request = computeandstorage_pb2.DeleteRequest(s3uri=s3uri)
         client.DeleteFile(delete_request)
-        return
+        return 200
 
 
 if __name__ == "__main__":

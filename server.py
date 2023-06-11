@@ -5,6 +5,12 @@ import logging
 import computeandstorage_pb2
 import computeandstorage_pb2_grpc
 import boto3
+from boto3.session import Session
+
+aws_access_key_id = "ASIAW75AOYZ3WY3VZRFA"
+aws_secret_access_key = "ldq3+/ZPBGg6N65bAz+ew/VtQTkqElObLTstp3C7"
+aws_session_token = "FwoGZXIvYXdzEHoaDGLJaBwjkNDwacqKkSLAAYBrqK3iv6KcrD3iHFKznGRLRObukM+29cAXzWFPdN9cRK3KnVD0b4f1J+zLhlMAIx+X7ISVVIuMaCTPEMNLosW1OzKJw3BCS2b2o/Yn5jcRdn0wegE+PzLFaJS47rKYpiZPOL+Zveq+0tg68b/BubuI6BFcqGVAc+KBJBqZ2MuXad4+tTHh0wWPOdHfcc/7g1NeLsK/vWsRrpXAJkDM98mTJ6w3jOOSGqTcLZ+VZGhGxMU2vpYXi+5Bx1QPjlQXTCjun5SkBjItJeqLcM37AV8DvLRNR6PR53RAGDEWWv8pz9yhif0rC7dlAnyB+vRuyg/xxfvT"
+region = 'us-east-1'
 
 
 class EC2OperationsServicerServer(computeandstorage_pb2_grpc.EC2OperationsServicer):
@@ -15,7 +21,9 @@ class EC2OperationsServicerServer(computeandstorage_pb2_grpc.EC2OperationsServic
         print("Printing Data in storedata : ", data)
 
         # Store the data in a file on Amazon S3
-        s3 = boto3.client('s3')
+        s3 = boto3.client("s3", aws_access_key_id="ASIAW75AOYZ3WY3VZRFA",
+                          aws_secret_access_key="ldq3+/ZPBGg6N65bAz+ew/VtQTkqElObLTstp3C7",
+                          aws_session_token="FwoGZXIvYXdzEHoaDGLJaBwjkNDwacqKkSLAAYBrqK3iv6KcrD3iHFKznGRLRObukM+29cAXzWFPdN9cRK3KnVD0b4f1J+zLhlMAIx+X7ISVVIuMaCTPEMNLosW1OzKJw3BCS2b2o/Yn5jcRdn0wegE+PzLFaJS47rKYpiZPOL+Zveq+0tg68b/BubuI6BFcqGVAc+KBJBqZ2MuXad4+tTHh0wWPOdHfcc/7g1NeLsK/vWsRrpXAJkDM98mTJ6w3jOOSGqTcLZ+VZGhGxMU2vpYXi+5Bx1QPjlQXTCjun5SkBjItJeqLcM37AV8DvLRNR6PR53RAGDEWWv8pz9yhif0rC7dlAnyB+vRuyg/xxfvT")
         bucket_name = 'b00925429cloudcomputingassignment2'
         file_name = 'data.txt'
         s3.put_object(Body=data, Bucket=bucket_name, Key=file_name)
@@ -32,7 +40,9 @@ class EC2OperationsServicerServer(computeandstorage_pb2_grpc.EC2OperationsServic
         print("Printing Data in appenddata : ", data)
 
         # Append the data to the existing file on Amazon S3
-        s3 = boto3.client('s3')
+        s3 = boto3.client("s3", aws_access_key_id="ASIAW75AOYZ3WY3VZRFA",
+                          aws_secret_access_key="ldq3+/ZPBGg6N65bAz+ew/VtQTkqElObLTstp3C7",
+                          aws_session_token="FwoGZXIvYXdzEHoaDGLJaBwjkNDwacqKkSLAAYBrqK3iv6KcrD3iHFKznGRLRObukM+29cAXzWFPdN9cRK3KnVD0b4f1J+zLhlMAIx+X7ISVVIuMaCTPEMNLosW1OzKJw3BCS2b2o/Yn5jcRdn0wegE+PzLFaJS47rKYpiZPOL+Zveq+0tg68b/BubuI6BFcqGVAc+KBJBqZ2MuXad4+tTHh0wWPOdHfcc/7g1NeLsK/vWsRrpXAJkDM98mTJ6w3jOOSGqTcLZ+VZGhGxMU2vpYXi+5Bx1QPjlQXTCjun5SkBjItJeqLcM37AV8DvLRNR6PR53RAGDEWWv8pz9yhif0rC7dlAnyB+vRuyg/xxfvT")
         bucket_name = 'b00925429cloudcomputingassignment2'
         file_name = 'data.txt'
         existing_data = s3.get_object(Bucket=bucket_name, Key=file_name)[
