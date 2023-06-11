@@ -5,7 +5,6 @@ import logging
 import computeandstorage_pb2
 import computeandstorage_pb2_grpc
 import boto3
-from boto3.session import Session
 
 
 class EC2OperationsServicerServer(computeandstorage_pb2_grpc.EC2OperationsServicer):
@@ -17,9 +16,10 @@ class EC2OperationsServicerServer(computeandstorage_pb2_grpc.EC2OperationsServic
         print("Printing Data in storedata : ", data)
 
         # Store the data in a file on Amazon S3
-        s3 = boto3.client("s3", aws_access_key_id="ASIAW75AOYZ3WY3VZRFA",
-                          aws_secret_access_key="ldq3+/ZPBGg6N65bAz+ew/VtQTkqElObLTstp3C7",
-                          aws_session_token="FwoGZXIvYXdzEHoaDGLJaBwjkNDwacqKkSLAAYBrqK3iv6KcrD3iHFKznGRLRObukM+29cAXzWFPdN9cRK3KnVD0b4f1J+zLhlMAIx+X7ISVVIuMaCTPEMNLosW1OzKJw3BCS2b2o/Yn5jcRdn0wegE+PzLFaJS47rKYpiZPOL+Zveq+0tg68b/BubuI6BFcqGVAc+KBJBqZ2MuXad4+tTHh0wWPOdHfcc/7g1NeLsK/vWsRrpXAJkDM98mTJ6w3jOOSGqTcLZ+VZGhGxMU2vpYXi+5Bx1QPjlQXTCjun5SkBjItJeqLcM37AV8DvLRNR6PR53RAGDEWWv8pz9yhif0rC7dlAnyB+vRuyg/xxfvT")
+        s3 = boto3.client("s3", aws_access_key_id="ASIAW75AOYZ32KHUCZAJ",
+                          aws_secret_access_key="XA7UqSr4qIrtQ1teOiZzK9nzDgIAREsqq9OazdEE",
+                          aws_session_token="FwoGZXIvYXdzEH4aDOafiAvS7OayHsVbkyLAAUkeXClI6/GPPwfwybpJC1iwD6Htd7ez+CJZfwN50jJt8kCVy8lmHebtrr87TDmyOiOUjmEQkav6zaHrNZ76d12nX0F97YH7iI1F4rPFUH5xrBrnBo8F6oquj/8PMo5lyA0CbxviwOFP4q8etZ0xe4dQsb9Uz6uPeZq/Hxq58HGnXSXbEXnYJY6XLTf2wj+1iKQYGpQJ0vvG1l2sl/F6r50JNoGxoKDjs47KzNbnwXvDb/IWgrUIhSYavmSZI8pnMyitmpWkBjItrO9WWp+EJXpqQvYZIxKI3Q7nYl1jZ04ET6WSdfxmMYpRPo7h/MkZmXj1yEDH"
+                          )
         bucket_name = 'b00925429cloudcomputingassignment2'
         file_name = 'data.txt'
         s3.put_object(Body=data, Bucket=bucket_name, Key=file_name)
@@ -36,9 +36,10 @@ class EC2OperationsServicerServer(computeandstorage_pb2_grpc.EC2OperationsServic
         print("Printing Data in appenddata : ", data)
 
         # Append the data to the existing file on Amazon S3
-        s3 = boto3.client("s3", aws_access_key_id="ASIAW75AOYZ3WY3VZRFA",
-                          aws_secret_access_key="ldq3+/ZPBGg6N65bAz+ew/VtQTkqElObLTstp3C7",
-                          aws_session_token="FwoGZXIvYXdzEHoaDGLJaBwjkNDwacqKkSLAAYBrqK3iv6KcrD3iHFKznGRLRObukM+29cAXzWFPdN9cRK3KnVD0b4f1J+zLhlMAIx+X7ISVVIuMaCTPEMNLosW1OzKJw3BCS2b2o/Yn5jcRdn0wegE+PzLFaJS47rKYpiZPOL+Zveq+0tg68b/BubuI6BFcqGVAc+KBJBqZ2MuXad4+tTHh0wWPOdHfcc/7g1NeLsK/vWsRrpXAJkDM98mTJ6w3jOOSGqTcLZ+VZGhGxMU2vpYXi+5Bx1QPjlQXTCjun5SkBjItJeqLcM37AV8DvLRNR6PR53RAGDEWWv8pz9yhif0rC7dlAnyB+vRuyg/xxfvT")
+        s3 = boto3.client("s3", aws_access_key_id="ASIAW75AOYZ32KHUCZAJ",
+                          aws_secret_access_key="XA7UqSr4qIrtQ1teOiZzK9nzDgIAREsqq9OazdEE",
+                          aws_session_token="FwoGZXIvYXdzEH4aDOafiAvS7OayHsVbkyLAAUkeXClI6/GPPwfwybpJC1iwD6Htd7ez+CJZfwN50jJt8kCVy8lmHebtrr87TDmyOiOUjmEQkav6zaHrNZ76d12nX0F97YH7iI1F4rPFUH5xrBrnBo8F6oquj/8PMo5lyA0CbxviwOFP4q8etZ0xe4dQsb9Uz6uPeZq/Hxq58HGnXSXbEXnYJY6XLTf2wj+1iKQYGpQJ0vvG1l2sl/F6r50JNoGxoKDjs47KzNbnwXvDb/IWgrUIhSYavmSZI8pnMyitmpWkBjItrO9WWp+EJXpqQvYZIxKI3Q7nYl1jZ04ET6WSdfxmMYpRPo7h/MkZmXj1yEDH"
+                          )
         bucket_name = 'b00925429cloudcomputingassignment2'
         file_name = 'data.txt'
         existing_data = s3.get_object(Bucket=bucket_name, Key=file_name)[
@@ -60,9 +61,10 @@ class EC2OperationsServicerServer(computeandstorage_pb2_grpc.EC2OperationsServic
         file_name = '/'.join(parts[3:])
 
         # Delete the file from Amazon S3
-        s3 = boto3.client('s3', aws_access_key_id="ASIAW75AOYZ3WY3VZRFA",
-                          aws_secret_access_key="ldq3+/ZPBGg6N65bAz+ew/VtQTkqElObLTstp3C7",
-                          aws_session_token="FwoGZXIvYXdzEHoaDGLJaBwjkNDwacqKkSLAAYBrqK3iv6KcrD3iHFKznGRLRObukM+29cAXzWFPdN9cRK3KnVD0b4f1J+zLhlMAIx+X7ISVVIuMaCTPEMNLosW1OzKJw3BCS2b2o/Yn5jcRdn0wegE+PzLFaJS47rKYpiZPOL+Zveq+0tg68b/BubuI6BFcqGVAc+KBJBqZ2MuXad4+tTHh0wWPOdHfcc/7g1NeLsK/vWsRrpXAJkDM98mTJ6w3jOOSGqTcLZ+VZGhGxMU2vpYXi+5Bx1QPjlQXTCjun5SkBjItJeqLcM37AV8DvLRNR6PR53RAGDEWWv8pz9yhif0rC7dlAnyB+vRuyg/xxfvT")
+        s3 = boto3.client('s3', aws_access_key_id="ASIAW75AOYZ32KHUCZAJ",
+                          aws_secret_access_key="XA7UqSr4qIrtQ1teOiZzK9nzDgIAREsqq9OazdEE",
+                          aws_session_token="FwoGZXIvYXdzEH4aDOafiAvS7OayHsVbkyLAAUkeXClI6/GPPwfwybpJC1iwD6Htd7ez+CJZfwN50jJt8kCVy8lmHebtrr87TDmyOiOUjmEQkav6zaHrNZ76d12nX0F97YH7iI1F4rPFUH5xrBrnBo8F6oquj/8PMo5lyA0CbxviwOFP4q8etZ0xe4dQsb9Uz6uPeZq/Hxq58HGnXSXbEXnYJY6XLTf2wj+1iKQYGpQJ0vvG1l2sl/F6r50JNoGxoKDjs47KzNbnwXvDb/IWgrUIhSYavmSZI8pnMyitmpWkBjItrO9WWp+EJXpqQvYZIxKI3Q7nYl1jZ04ET6WSdfxmMYpRPo7h/MkZmXj1yEDH"
+                          )
         s3.delete_object(Bucket=bucket_name, Key=file_name)
 
         # Return an empty response
